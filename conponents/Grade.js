@@ -1,6 +1,8 @@
-import React from "react";
-const Grade =()=>{
-    return <><h1>성적표</h1>
+import React, { useState } from "react";
+import Layout from "../container/Layout";
+export default function Grade(){
+    const[count,setCount]=useState(0)
+    return <Layout><h1>성적표</h1>
     
     <form>
    
@@ -23,7 +25,6 @@ const Grade =()=>{
     </div>
     </form>
     
-    </>
+    </Layout>
 
 }
-export default Grade

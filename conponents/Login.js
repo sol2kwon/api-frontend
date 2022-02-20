@@ -1,6 +1,11 @@
-import React from "react";
-const Login =()=>{
-    return <><h1>로그인 폼</h1>
+import React, { useState } from "react";
+import Layout from "../container/Layout";
+export default function Login(){
+    const[na,setNa]=useState("");
+    const[id,setId]=useState("");
+    const[pw,setPw]=useState(0);
+
+    return <Layout><h1>로그인 폼</h1>
     
    <form>
     <div>
@@ -26,8 +31,7 @@ const Login =()=>{
     </div>
     </form>
     
-    </>
+    </Layout>
     
 }
     
-export default Login;
