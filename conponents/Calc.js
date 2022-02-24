@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "../container/Layout";
+import Layout from "../containers/Layout";
 export default function Calc(){
     const[num1,setNum1]=useState(0);
     const[num2,setNum2]=useState(0);

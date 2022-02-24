@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "../container/Layout";
+import Layout from "../containers/Layout";
 export default function Grade(){
     const[count,setCount]=useState(0)
     return <Layout><h1>성적표</h1>
