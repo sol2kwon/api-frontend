@@ -1,30 +1,38 @@
 import React, { useState } from "react";
 import Layout from "../containers/Layout";
 export default function Grade(){
-    const[count,setCount]=useState(0)
-    return <Layout><h1>성적표</h1>
-    
+  const [inputs,setInputs]=useState({})
+  const {name,kor,eng,math}=inputs;
+
+  const handleChange=(e)=>{
+      e.preventDefault()
+      const {value,name}=e.target;
+    setInputs({
+        ...inputs,[name]:value})
+    }
+  const handleClick=(e)=>{
+      e.preventDefault()
+      const gradeRequest = {name,kor,eng,math}
+      alert(`학생 성적표: ${JSON.stringify(gradeRequest)}`)
+  }
+  return (<Layout>
     <form>
-   
-    
-    <div>
-    <label htmlFor=""> <b>이름</b></label><input/>
+    <h1>Grade폼</h1>
+<div>
+<label><b>name</b></label>
+<input type= "text" onChange={handleChange} name="name"/><br />
 
-    <label htmlFor=""><b>  비밀번호</b>  </label>
-    <input type="" />
+<label htmlFor=""><b>kor </b></label>
+<input type= "text" onChange={handleChange} name="kor"/><br />
 
-    <button>조회</button>
-    <label > <input type="checkbox"/> 개인정보 수집 동의</label>
-   
-    </div>
+<label htmlFor=""><b>eng </b></label>
+<input type= "text" onChange={handleChange} name="eng"/><br />
 
-    <div>
-    <button>Cancel</button>
-    <span> Forgot<a> password?</a>
-    </span>
-    </div>
-    </form>
-    
-    </Layout>
-
+<label htmlFor=""><b>math </b></label>
+<input type= "text" onChange={handleChange} name="math"/><br />
+<button onClick={handleClick}>Grade 체크</button><br/>
+</div>
+</form>
+</Layout>)
 }
+    

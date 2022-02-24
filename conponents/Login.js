@@ -1,37 +1,33 @@
 import React, { useState } from "react";
 import Layout from "../containers/Layout";
 export default function Login(){
-    const[na,setNa]=useState("");
-    const[id,setId]=useState("");
-    const[pw,setPw]=useState(0);
+   const [inputs,setInputs]=useState({})
+   const {name,id,pw}=inputs;
 
-    return <Layout><h1>로그인 폼</h1>
+   const handleChange=(e)=>{
+       e.preventDefault()
+       const {value,name}=e.target;
+       setInputs({
+           ...inputs,[name]:value})
+   }
+   const handleClick=(e)=>{
+       e.preventDefault()
+       const loginRequest = {name,id,pw}
+       alert(`로그인 : ${JSON.stringify(loginRequest)}`)
+   }
+    return(<Layout><form><h1>로그인 폼</h1>
     
-   <form>
     <div>
-    <img src="" alt="" />
-    </div>
-    
-    <div>
-    <label htmlFor=""> <b>Username</b></label>
-    <input/><br />
-
-    <label htmlFor=""><b>  Password</b>  </label>
-    <input type="" /><br />
-
-    <button>Login</button><br />
-    <label > <input type="checkbox"/> Remember me</label>
+<label><b>name</b></label>
+<input type= "text" onChange={handleChange} name="name"/><br/>
    
-    </div>
+<label><b>ID</b></label>
+<input type= "text" onChange={handleChange} name="id"/><br/>
 
-    <div>
-    <button>Cancel</button>
-    <span> Forgot<a> password?</a>
-    </span>
+<label><b>pw</b></label>
+<input type= "text" onChange={handleChange} name="pw"/><br/>
+<button onClick={handleClick}>Login 체크</button><br/>
     </div>
     </form>
-    
-    </Layout>
-    
+    </Layout>)
 }
-    
