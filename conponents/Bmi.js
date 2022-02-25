@@ -1,10 +1,12 @@
 import React, { useState } from 'react' 
+import { memberBmi } from '../api/index';
 import Layout from '../containers/Layout';
-import axios from 'axios';
+
 export default function Bmi(){
     
     const [inputs, setInputs] = useState({})
      const {username,weight,height} = inputs; // Objext Destructuring
+     const [result,setResult]=useState('')
 
     const handleChange =(e)=>{
         e.preventDefault()
@@ -15,32 +17,26 @@ export default function Bmi(){
 
     const handleClick =(e)=>{
         e.preventDefault()
-        const bmiRequest = {username, weight, height}
-        alert(`사용자이름: ${JSON.stringify(bmiRequest)}`)
-        /*alert(`사용자이름: ${JSON.stringify(bmiRequest)}`)
-            axios.get(`http://localhost:8080/member/bmi/김길동/180.5/80.5`)
-            .then((res)=>{
-              alert(`답장이 도착했습니다 [내용] ${JSON.stringify(res.data)}`)
-            })*/
-            
+        memberBmi({username, weight, height}).then(res=>setResult(res.data)).catch(err=>console.log(`에러발생 ${err}`))
         }
-  
-    return (<Layout>
-        <form><h1>Bmi폼</h1>
+        
+    return <Layout>
+        <h1>Bmi폼</h1>
     
-    
-    <div>
+        <form>
     <label><b>Username</b></label>
     <input type="text"  onChange ={handleChange} name="username"/><br />
 
-    <label htmlFor=""><b>height</b></label>
+    <label htmlFor=""><b>weight</b></label>
     <input type= "text" onChange ={handleChange} name="height"/><br/>
 
-    <label htmlFor=""><b>weight</b></label>
+    <label htmlFor=""><b>height</b></label>
     <input type= "text"  onChange ={handleChange} name="weight"/><br />
-    <button onClick={handleClick}>BMI 체크</button>
-    </div>
+
+    <button onClick={handleClick}>BMI 전송</button>
+    
     </form>
+    <div>계산결과:{result}</div>
    
-    </Layout>)
+    </Layout>
     }
