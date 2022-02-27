@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { memberGrade } from "../api";
 import Layout from "../containers/Layout";
 export default function Grade(){
   const [inputs,setInputs]=useState({})
+  const[result,setResult]=useState('')
   const {name,kor,eng,math}=inputs;
 
   const handleChange=(e)=>{
@@ -12,13 +14,10 @@ export default function Grade(){
     }
   const handleClick=(e)=>{
       e.preventDefault()
-      const gradeRequest = {name,kor,eng,math}
-      alert(`학생 성적표: ${JSON.stringify(gradeRequest)}`)
+      memberGrade({name, kor ,eng,math}).then(res => setResult(res.data)).catch( err => console.log(`에러발생 : ${err}`))
   }
-  return (<Layout>
-    <form>
-    <h1>Grade폼</h1>
-<div>
+  return <Layout><h1>Grade폼</h1>
+<form action=""> 
 <label><b>name</b></label>
 <input type= "text" onChange={handleChange} name="name"/><br />
 
@@ -31,8 +30,7 @@ export default function Grade(){
 <label htmlFor=""><b>math </b></label>
 <input type= "text" onChange={handleChange} name="math"/><br />
 <button onClick={handleClick}>Grade 체크</button><br/>
-</div>
 </form>
-</Layout>)
+<div>계산결과 : {result}</div>
+</Layout>
 }
-    

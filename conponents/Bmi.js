@@ -5,7 +5,7 @@ import Layout from '../containers/Layout';
 export default function Bmi(){
     
     const [inputs, setInputs] = useState({})
-     const {username,weight,height} = inputs; // Objext Destructuring
+     const {name,weight,height} = inputs; // Objext Destructuring
      const [result,setResult]=useState('')
 
     const handleChange =(e)=>{
@@ -17,15 +17,15 @@ export default function Bmi(){
 
     const handleClick =(e)=>{
         e.preventDefault()
-        memberBmi({username, weight, height}).then(res=>setResult(res.data)).catch(err=>console.log(`에러발생 ${err}`))
+        memberBmi({name, weight, height}).then(res=>setResult(res.data)).catch(err=>console.log(`에러발생 ${err}`))
         }
         
     return <Layout>
         <h1>Bmi폼</h1>
     
         <form>
-    <label><b>Username</b></label>
-    <input type="text"  onChange ={handleChange} name="username"/><br />
+    <label><b>name</b></label>
+    <input type="text"  onChange ={handleChange} name="name"/><br />
 
     <label htmlFor=""><b>weight</b></label>
     <input type= "text" onChange ={handleChange} name="height"/><br/>
@@ -36,7 +36,7 @@ export default function Bmi(){
     <button onClick={handleClick}>BMI 전송</button>
     
     </form>
-    <div>계산결과:{result}</div>
+    <div>BMI 결과:{result}</div>
    
     </Layout>
     }
