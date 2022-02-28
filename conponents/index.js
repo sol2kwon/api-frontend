@@ -1,0 +1,5 @@
+export {defalt as Bmi} from './Components'
+export {defalt as Cacl} from './Components'
+export {defalt as Grade} from './Components'
+export {defalt as Login} from './Components'
+export {defalt as Counter} from './Components'
